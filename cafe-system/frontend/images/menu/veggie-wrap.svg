@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <defs><linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#bddc9d"/><stop offset="100%" stop-color="#51703d"/></linearGradient></defs>
+  <rect width="320" height="220" rx="28" fill="url(#bg)"/>
+  <circle cx="252" cy="58" r="42" fill="#f7fff0" opacity="0.16"/>
+  <path d="M188 62l52 74 28-20-52-74z" fill="#fff1db"/>
+  <path d="M204 87l29 40 20-14-29-40z" fill="#5f944b"/>
+  <text x="26" y="160" fill="#fafff6" font-family="Arial, sans-serif" font-size="26" font-weight="700">Veggie Wrap</text>
+  <text x="26" y="190" fill="#e9ffe5" font-family="Arial, sans-serif" font-size="16">Sandwiches</text>
+</svg>

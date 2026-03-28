@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <defs><linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#ec9cc4"/><stop offset="100%" stop-color="#7c417a"/></linearGradient></defs>
+  <rect width="320" height="220" rx="28" fill="url(#bg)"/>
+  <circle cx="252" cy="58" r="42" fill="#fff7ef" opacity="0.16"/>
+  <path d="M194 54h56l10 76h-76z" fill="#fff8ef"/>
+  <path d="M198 74h46l8 56h-62z" fill="#b14585"/>
+  <circle cx="230" cy="88" r="10" fill="#ffd76c"/>
+  <text x="26" y="160" fill="#fffaf2" font-family="Arial, sans-serif" font-size="24" font-weight="700">Berry Lemonade</text>
+  <text x="26" y="190" fill="#fff0dd" font-family="Arial, sans-serif" font-size="16">Cold Drinks</text>
+</svg>

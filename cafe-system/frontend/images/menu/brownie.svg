@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+  <defs><linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" stop-color="#c49776"/><stop offset="100%" stop-color="#5e3427"/></linearGradient></defs>
+  <rect width="320" height="220" rx="28" fill="url(#bg)"/>
+  <circle cx="252" cy="58" r="42" fill="#fff8ef" opacity="0.16"/>
+  <rect x="192" y="84" width="70" height="50" rx="10" fill="#4f2d22"/>
+  <rect x="192" y="84" width="70" height="12" rx="6" fill="#6b4433"/>
+  <text x="26" y="160" fill="#fffaf2" font-family="Arial, sans-serif" font-size="24" font-weight="700">Chocolate Brownie</text>
+  <text x="26" y="190" fill="#fff0dd" font-family="Arial, sans-serif" font-size="16">Desserts</text>
+</svg>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Bean Scene Cafe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/frontend/css/style.css">
+  </head>
+  <body class="page-shell">
+    <nav class="navbar navbar-expand-lg sticky-top navbar-glass">
+      <div class="container py-2">
+        <a class="navbar-brand d-flex align-items-center gap-3" href="/">
+          <img src="/frontend/images/logo.svg" alt="Bean Scene Cafe logo" class="brand-mark">
+          <span class="brand-wordmark">Bean Scene Cafe</span>
+        </a>
+        <div class="d-flex flex-wrap align-items-center gap-2 ms-auto">
+          <a class="btn btn-outline-coffee" data-table-link="index.html" href="/frontend/index.html">Home</a>
+          <a class="btn btn-outline-coffee" data-table-link="cart.html" href="/frontend/cart.html">
+            Cart <span class="badge text-bg-dark ms-2" data-cart-count>0</span>
+          </a>
+          <span class="table-pill">Table <span data-table-number></span></span>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-4 py-lg-5">
+      <section class="hero-card reveal mb-4">
+        <div class="page-hero">
+          <div>
+            <div class="eyebrow mb-3">Digital Menu</div>
+            <h1 class="section-title mb-3">Une carte plus tactile, plus editoriale, pensee pour la table <span data-table-number></span>.</h1>
+            <p class="hero-copy fs-5 mb-0">Chaque carte produit est hydratee depuis l'API pour garder le site client et le staff alignes sur les memes donnees.</p>
+          </div>
+          <aside class="page-hero__aside">
+            <div class="page-hero__meta">
+              <div class="page-hero__meta-item">
+                <div class="muted-copy small text-uppercase fw-bold mb-2">Panier</div>
+                <div class="section-title fs-2 mb-1"><span data-cart-count>0</span> articles</div>
+                <div class="muted-copy">Total actuel: <strong data-cart-total>0.00 MAD</strong></div>
+              </div>
+              <div class="page-hero__meta-item">
+                <div class="muted-copy small text-uppercase fw-bold mb-2">Service</div>
+                <div class="fw-semibold">La commande part directement vers le backend puis vers l'espace service.</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section-shell mb-4">
+        <div class="d-flex flex-wrap gap-2" data-category-nav></div>
+      </section>
+      <div data-menu-root></div>
+
+      <div class="sticky-cart-bar d-none" data-sticky-cart>
+        <div class="sticky-cart-card p-4">
+          <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+            <div>
+              <div class="text-uppercase small text-white-50 fw-bold mb-2">Cart Ready</div>
+              <div class="section-title text-white mb-1"><span data-cart-count>0</span> items selected</div>
+              <div class="text-white-50">Subtotal: <strong class="text-white" data-cart-total>0.00 MAD</strong></div>
+            </div>
+            <a class="btn btn-light btn-lg px-4" href="/frontend/cart.html" data-cart-link>Review Cart</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="/frontend/js/menu.js"></script>
+  </body>
+</html>

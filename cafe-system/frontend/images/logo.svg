@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">Bean Scene Cafe Logo</title>
+  <defs>
+    <linearGradient id="beanSceneBg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#d79054" />
+      <stop offset="100%" stop-color="#6f3f2f" />
+    </linearGradient>
+  </defs>
+  <rect width="240" height="240" rx="54" fill="url(#beanSceneBg)" />
+  <circle cx="120" cy="120" r="82" fill="#fff4e8" opacity="0.16" />
+  <path d="M77 86h78c8 0 14 6 14 14v18c0 29-22 52-50 52h-4c-28 0-50-23-50-52V100c0-8 6-14 12-14z" fill="#fff9f2" />
+  <path d="M171 100h10c14 0 25 11 25 25s-11 25-25 25h-10" fill="none" stroke="#fff9f2" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M90 70c0 11 8 16 8 25M119 62c0 11 8 17 8 26M148 70c0 11 8 16 8 25" fill="none" stroke="#fff4d8" stroke-linecap="round" stroke-width="10" />
+  <path d="M78 144h90" stroke="#6f3f2f" stroke-linecap="round" stroke-width="10" opacity="0.25" />
+</svg>
