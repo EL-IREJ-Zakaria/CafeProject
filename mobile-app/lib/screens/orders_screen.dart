@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../models/order.dart';
 import '../services/api_service.dart';
 import 'login_screen.dart';
+import 'order_details_screen.dart';
 
 class OrdersScreen extends StatefulWidget {
   const OrdersScreen({
@@ -100,6 +101,14 @@ class _OrdersScreenState extends State<OrdersScreen> {
     }
   }
 
+  Future<void> _openOrderDetails(Order order) async {
+    await Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (_) => OrderDetailsScreen(order: order),
+      ),
+    );
+  }
+
   Future<void> _logout() async {
     widget.apiService.logout();
     if (!mounted) {
@@ -152,7 +161,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'The app refreshes every 5 seconds so newly submitted website orders appear automatically.',
+                      'Tap any order to open its details. The app refreshes every 5 seconds so newly submitted website orders appear automatically.',
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 16),
@@ -182,10 +191,12 @@ class _OrdersScreenState extends State<OrdersScreen> {
             ],
             const SizedBox(height: 16),
             if (_loading)
-              const Center(child: Padding(
-                padding: EdgeInsets.only(top: 48),
-                child: CircularProgressIndicator(),
-              ))
+              const Center(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 48),
+                  child: CircularProgressIndicator(),
+                ),
+              )
             else if (_orders.isEmpty)
               Card(
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
@@ -195,14 +206,17 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 ),
               )
             else
-              ..._orders.map((order) => Padding(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: _OrderCard(
-                      order: order,
-                      busy: _updating,
-                      onAdvance: () => _advanceStatus(order),
-                    ),
-                  )),
+              ..._orders.map(
+                (order) => Padding(
+                  padding: const EdgeInsets.only(bottom: 16),
+                  child: _OrderCard(
+                    order: order,
+                    busy: _updating,
+                    onTap: () => _openOrderDetails(order),
+                    onAdvance: () => _advanceStatus(order),
+                  ),
+                ),
+              ),
           ],
         ),
       ),
@@ -214,11 +228,13 @@ class _OrderCard extends StatelessWidget {
   const _OrderCard({
     required this.order,
     required this.busy,
+    required this.onTap,
     required this.onAdvance,
   });
 
   final Order order;
   final bool busy;
+  final VoidCallback onTap;
   final VoidCallback onAdvance;
 
   @override
@@ -228,62 +244,69 @@ class _OrderCard extends StatelessWidget {
 
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      child: Padding(
-        padding: const EdgeInsets.all(18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Table ${order.tableNumber}',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ),
-                _StatusChip(status: order.status),
-              ],
-            ),
-            const SizedBox(height: 6),
-            Text(
-              'Order #${order.id} ? ${_formatDate(order.createdAt)}',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            const SizedBox(height: 16),
-            ...order.items.map(
-              (item) => Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text('${item.quantity} x ${item.name}'),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(24),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Table ${order.tableNumber}',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
-                    Text('\$${(item.price * item.quantity).toStringAsFixed(2)}'),
-                  ],
+                  ),
+                  _StatusChip(status: order.status),
+                ],
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'Order #${order.id} ? ${_formatDate(order.createdAt)}',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 16),
+              ...order.items.map(
+                (item) => Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text('${item.quantity} x ${item.name}'),
+                      ),
+                      Text('\$${(item.price * item.quantity).toStringAsFixed(2)}'),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const Divider(height: 28),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Total: \$${order.totalPrice.toStringAsFixed(2)}',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+              const Divider(height: 28),
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      'Total: \$${order.totalPrice.toStringAsFixed(2)}',
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
+                    ),
                   ),
-                ),
-                if (canAdvance)
-                  FilledButton(
-                    onPressed: busy ? null : onAdvance,
-                    child: Text(nextLabel),
-                  ),
-              ],
-            ),
-          ],
+                  const Icon(Icons.chevron_right),
+                  if (canAdvance) ...[
+                    const SizedBox(width: 12),
+                    FilledButton(
+                      onPressed: busy ? null : onAdvance,
+                      child: Text(nextLabel),
+                    ),
+                  ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -339,4 +362,3 @@ class _StatusChip extends StatelessWidget {
     );
   }
 }
-

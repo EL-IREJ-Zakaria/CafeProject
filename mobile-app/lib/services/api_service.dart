@@ -8,7 +8,7 @@ class ApiService {
       : baseUrl = baseUrl ??
             const String.fromEnvironment(
               'API_BASE_URL',
-              defaultValue: 'http://10.0.2.2/CafeProject/cafe_api',
+              defaultValue: 'http://192.168.1.170/CafeProject/cafe_api',
             );
 
   final String baseUrl;
@@ -109,3 +109,4 @@ class ApiService {
     return decoded;
   }
 }
+

@@ -3,88 +3,144 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cafe Menu</title>
+  <title>Maison Aure | Cafe Menu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="hero-section text-white">
-    <div class="container py-5">
-      <div class="row align-items-center g-4">
-        <div class="col-lg-7">
-          <span class="badge bg-light text-dark px-3 py-2 mb-3">Cafe Menu</span>
-          <h1 class="display-5 fw-bold mb-3">Commandez votre cafe en quelques secondes</h1>
-          <p class="lead mb-0">
-            Choisissez votre table, votre produit, la quantite, puis envoyez votre commande directement au serveur.
-          </p>
-        </div>
-        <div class="col-lg-5">
-          <div class="order-box shadow-lg">
-            <h2 class="h4 mb-4">Passer une commande</h2>
+  <div class="page-backdrop"></div>
+  <div class="glow glow-one"></div>
+  <div class="glow glow-two"></div>
 
-            <form id="orderForm">
-              <div class="mb-3">
+  <main class="site-shell">
+    <section class="hero-block container py-5 py-xl-6">
+      <div class="row g-4 align-items-start">
+        <div class="col-xl-7">
+          <div class="hero-copy reveal-card">
+            <span class="eyebrow">Maison Aure - Table Experience</span>
+            <h1 class="hero-title">Un menu cafe au design plus exclusif, pense pour commander plusieurs produits avec elegance.</h1>
+            <p class="hero-text">
+              Selectionnez votre table, composez un panier raffine et envoyez la commande complete en une seule action. Une experience plus moderne, plus claire, et plus premium pour vos clients.
+            </p>
+            <div class="hero-metrics">
+              <div class="metric-pill">
+                <strong>Multi-produits</strong>
+                <span>Une seule table, plusieurs articles</span>
+              </div>
+              <div class="metric-pill">
+                <strong>Panier intelligent</strong>
+                <span>Total instantane et suppression rapide</span>
+              </div>
+              <div class="metric-pill">
+                <strong>Transmission directe</strong>
+                <span>Envoi immediat vers le backend PHP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <aside class="order-panel reveal-card">
+            <div class="panel-topbar">
+              <div>
+                <p class="panel-kicker mb-1">Commande privee</p>
+                <h2 class="panel-title mb-0">Composer la table</h2>
+              </div>
+              <span class="service-badge">Live</span>
+            </div>
+
+            <form id="orderForm" class="order-form">
+              <div class="field-shell mb-3">
                 <label for="tableNumber" class="form-label">Numero de table</label>
                 <input
                   type="number"
                   id="tableNumber"
-                  class="form-control"
+                  class="form-control luxe-control"
                   min="1"
                   placeholder="Ex: 5"
                   required
                 />
               </div>
 
-              <div class="mb-3">
+              <div class="field-shell mb-3">
                 <label for="productSelect" class="form-label">Produit</label>
-                <select id="productSelect" class="form-select" required>
+                <select id="productSelect" class="form-select luxe-control" required>
                   <option value="">Choisir un produit</option>
                 </select>
               </div>
 
-              <div class="mb-3">
+              <div class="field-shell mb-3">
                 <label for="quantity" class="form-label">Quantite</label>
                 <input
                   type="number"
                   id="quantity"
-                  class="form-control"
+                  class="form-control luxe-control"
                   min="1"
                   value="1"
                   required
                 />
               </div>
 
-              <div class="summary-box mb-3">
-                <div class="d-flex justify-content-between">
+              <div class="pricing-panel mb-3">
+                <div class="pricing-row">
                   <span>Prix unitaire</span>
                   <strong id="unitPrice">0.00 DH</strong>
                 </div>
-                <div class="d-flex justify-content-between mt-2">
-                  <span>Total</span>
-                  <strong id="totalPrice">0.00 DH</strong>
+                <div class="pricing-row highlight">
+                  <span>Sous-total article</span>
+                  <strong id="linePrice">0.00 DH</strong>
                 </div>
               </div>
 
-              <button type="submit" id="submitBtn" class="btn btn-coffee w-100">
-                Commander
-              </button>
+              <div class="d-grid gap-2">
+                <button type="button" id="addToCartBtn" class="btn btn-add-cart w-100">
+                  Ajouter au panier
+                </button>
+                <button type="submit" id="submitBtn" class="btn btn-send-order w-100">
+                  Commander toute la table
+                </button>
+              </div>
             </form>
 
+            <div class="cart-shell mt-4">
+              <div class="cart-header">
+                <div>
+                  <p class="cart-label mb-1">Selection en cours</p>
+                  <h3 class="cart-title mb-0">Panier</h3>
+                </div>
+                <button type="button" id="clearCartBtn" class="btn btn-sm btn-light-clear">Vider</button>
+              </div>
+
+              <div id="cartItems" class="cart-items">
+                <p class="cart-empty mb-0">Aucun produit ajoute.</p>
+              </div>
+
+              <div class="pricing-panel mt-3 total-panel">
+                <div class="pricing-row total-row">
+                  <span>Total de la commande</span>
+                  <strong id="cartTotal">0.00 DH</strong>
+                </div>
+              </div>
+            </div>
+
             <div id="messageBox" class="alert mt-3 d-none" role="alert"></div>
-          </div>
+          </aside>
         </div>
       </div>
-    </div>
-  </header>
+    </section>
 
-  <main class="py-5">
-    <section class="container">
-      <div class="text-center mb-5">
-        <h2 class="fw-bold">Notre Menu</h2>
-        <p class="text-muted">Selectionnez un produit ci-dessous ou depuis le formulaire.</p>
+    <section class="menu-section container pb-5 pb-xl-6">
+      <div class="section-head reveal-card">
+        <div>
+          <span class="section-eyebrow">Collection signature</span>
+          <h2 class="section-title">Un menu plus net, plus premium, plus appetissant</h2>
+        </div>
+        <p class="section-copy mb-0">
+          Cliquez sur un article pour le preselectionner dans le panneau de commande, ajustez la quantite, puis ajoutez-le au panier.
+        </p>
       </div>
 
       <div class="row g-4" id="menuContainer"></div>
