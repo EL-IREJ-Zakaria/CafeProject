@@ -1,0 +1,251 @@
+:root {
+  --coffee-900: #2f1d14;
+  --coffee-700: #5b3928;
+  --coffee-500: #8d5d3d;
+  --cream-100: #f8f2ea;
+  --cream-200: #efe0ce;
+  --gold-400: #d4a25a;
+  --green-400: #6d8b74;
+  --shadow: 0 18px 45px rgba(47, 29, 20, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--coffee-900);
+  background:
+    radial-gradient(circle at top left, rgba(212, 162, 90, 0.22), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(109, 139, 116, 0.18), transparent 22%),
+    linear-gradient(135deg, #fffaf4 0%, #f5eadf 48%, #f7efe7 100%);
+}
+
+.page-shell {
+  padding-right: min(34rem, 37vw);
+}
+
+.hero-title,
+.section-title,
+.order-panel h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+.hero-section {
+  position: relative;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(47, 29, 20, 0.08);
+  color: var(--coffee-700);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-copy {
+  max-width: 44rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(47, 29, 20, 0.78);
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.hero-badges span {
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(91, 57, 40, 0.08);
+}
+
+.glass-panel {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 1.5rem;
+}
+
+.table-card {
+  animation: float-in 700ms ease-out;
+}
+
+.menu-card {
+  height: 100%;
+  border: 0;
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 55px rgba(47, 29, 20, 0.18);
+}
+
+.menu-card .card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.item-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.category-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(109, 139, 116, 0.12);
+  color: var(--green-400);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.price-tag {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--coffee-700);
+}
+
+.menu-card .btn {
+  border-radius: 999px;
+}
+
+.order-sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(32rem, 36vw);
+  height: 100vh;
+  padding: 1.5rem;
+}
+
+.order-panel {
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.cart-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(47, 29, 20, 0.08);
+}
+
+.cart-row:last-child {
+  border-bottom: 0;
+}
+
+.cart-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem;
+  border-radius: 999px;
+  background: rgba(47, 29, 20, 0.06);
+}
+
+.cart-actions button {
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 50%;
+  background: white;
+  color: var(--coffee-700);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(47, 29, 20, 0.08);
+  font-size: 1.15rem;
+}
+
+.empty-state {
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(47, 29, 20, 0.05);
+  color: rgba(47, 29, 20, 0.65);
+}
+
+.btn-primary {
+  border: 0;
+  background: linear-gradient(135deg, var(--coffee-700), var(--coffee-500));
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: linear-gradient(135deg, #4c2e20, #7a4f34);
+}
+
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .page-shell {
+    padding-right: 0;
+  }
+
+  .order-sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 0 1rem 1.5rem;
+  }
+
+  .order-panel {
+    height: auto;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-title {
+    font-size: 2.4rem;
+  }
+
+  .item-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

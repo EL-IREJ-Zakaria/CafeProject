@@ -10,3 +10,4 @@ return [
     'password' => env('DB_PASSWORD', ''),
     'charset' => env('DB_CHARSET', 'utf8mb4'),
 ];
+

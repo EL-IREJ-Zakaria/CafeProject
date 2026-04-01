@@ -1,0 +1,86 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f8f5f1;
+  color: #2d1f1a;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, #5c3b2e, #8b5e3c);
+}
+
+.order-box {
+  background: #ffffff;
+  color: #2d1f1a;
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.btn-coffee {
+  background-color: #6f4e37;
+  border-color: #6f4e37;
+  color: #fff;
+  font-weight: 600;
+}
+
+.btn-coffee:hover {
+  background-color: #5c4030;
+  border-color: #5c4030;
+  color: #fff;
+}
+
+.summary-box {
+  background: #f6efe8;
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.menu-card {
+  border: none;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  height: 100%;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
+}
+
+.menu-card .card-body {
+  padding: 22px;
+}
+
+.menu-price {
+  color: #6f4e37;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.menu-badge {
+  background: #f1e2d2;
+  color: #6f4e37;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+@media (max-width: 991.98px) {
+  .hero-section .display-5 {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .order-box {
+    padding: 18px;
+  }
+
+  .hero-section .display-5 {
+    font-size: 1.8rem;
+  }
+}
