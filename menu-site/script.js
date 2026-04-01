@@ -1,4 +1,5 @@
 const API_URL = "http://localhost/CafeProject/cafe_api/add_commande.php";
+const MAX_ITEMS_PER_TABLE = 100;
 
 const menuItems = [
   { name: "Espresso", price: 2.50, category: "Cafe", note: "Court, intense, signature maison" },
@@ -18,6 +19,9 @@ const quantityInput = document.getElementById("quantity");
 const unitPriceElement = document.getElementById("unitPrice");
 const linePriceElement = document.getElementById("linePrice");
 const cartTotalElement = document.getElementById("cartTotal");
+const cartCountElement = document.getElementById("cartCount");
+const remainingCountElement = document.getElementById("remainingCount");
+const capacityFillElement = document.getElementById("capacityFill");
 const menuContainer = document.getElementById("menuContainer");
 const cartItems = document.getElementById("cartItems");
 const orderForm = document.getElementById("orderForm");
@@ -28,6 +32,26 @@ const clearCartBtn = document.getElementById("clearCartBtn");
 
 function formatPrice(price) {
   return `${price.toFixed(2)} DH`;
+}
+
+function getCartQuantity() {
+  return cart.reduce((sum, item) => sum + item.quantity, 0);
+}
+
+function getRemainingCapacity() {
+  return MAX_ITEMS_PER_TABLE - getCartQuantity();
+}
+
+function updateCapacityUI() {
+  const count = getCartQuantity();
+  const remaining = getRemainingCapacity();
+  const percent = Math.min((count / MAX_ITEMS_PER_TABLE) * 100, 100);
+
+  cartCountElement.textContent = count;
+  remainingCountElement.textContent = remaining;
+  capacityFillElement.style.width = `${percent}%`;
+
+  addToCartBtn.disabled = remaining <= 0;
 }
 
 function renderMenu() {
@@ -98,6 +122,7 @@ function renderCart() {
   if (cart.length === 0) {
     cartItems.innerHTML = '<p class="cart-empty mb-0">Aucun produit ajoute.</p>';
     cartTotalElement.textContent = '0.00 DH';
+    updateCapacityUI();
     return;
   }
 
@@ -131,6 +156,7 @@ function renderCart() {
 
   const cartTotal = cart.reduce((sum, item) => sum + item.total, 0);
   cartTotalElement.textContent = formatPrice(cartTotal);
+  updateCapacityUI();
 }
 
 function showMessage(type, text) {
@@ -159,6 +185,17 @@ function addToCart() {
     return;
   }
 
+  if (quantity > MAX_ITEMS_PER_TABLE) {
+    showMessage("danger", `La quantite maximale autorisee pour un ajout est ${MAX_ITEMS_PER_TABLE}.`);
+    return;
+  }
+
+  const remaining = getRemainingCapacity();
+  if (quantity > remaining) {
+    showMessage("danger", `Impossible d'ajouter ${quantity} article(s). Il reste seulement ${remaining} place(s) pour cette table.`);
+    return;
+  }
+
   const selectedItem = menuItems[selectedIndex];
   cart.push({
     name: selectedItem.name,
@@ -184,6 +221,11 @@ async function submitWholeOrder(event) {
 
   if (cart.length === 0) {
     showMessage("danger", "Ajoutez au moins un produit au panier avant de commander.");
+    return;
+  }
+
+  if (getCartQuantity() > MAX_ITEMS_PER_TABLE) {
+    showMessage("danger", `La commande depasse la limite de ${MAX_ITEMS_PER_TABLE} articles pour cette table.`);
     return;
   }
 
@@ -218,18 +260,24 @@ async function submitWholeOrder(event) {
     cart.length = 0;
     renderCart();
     resetSelection();
-    showMessage("success", `${count} article(s) ont ete envoyes avec succes pour la table ${tableNumber}.`);
+    showMessage("success", `${count} ligne(s) de commande ont ete envoyees avec succes pour la table ${tableNumber}.`);
   } catch (error) {
     showMessage("danger", error.message || "Impossible d'envoyer la commande au serveur.");
   } finally {
     submitBtn.disabled = false;
-    addToCartBtn.disabled = false;
+    addToCartBtn.disabled = getRemainingCapacity() <= 0;
     submitBtn.textContent = "Commander toute la table";
   }
 }
 
 productSelect.addEventListener("change", updateLinePrice);
-quantityInput.addEventListener("input", updateLinePrice);
+quantityInput.addEventListener("input", () => {
+  const value = parseInt(quantityInput.value, 10) || 1;
+  if (value > MAX_ITEMS_PER_TABLE) {
+    quantityInput.value = MAX_ITEMS_PER_TABLE;
+  }
+  updateLinePrice();
+});
 addToCartBtn.addEventListener("click", addToCart);
 clearCartBtn.addEventListener("click", () => {
   cart.length = 0;
@@ -242,3 +290,4 @@ populateProductSelect();
 renderMenu();
 renderCart();
 updateLinePrice();
+updateCapacityUI();

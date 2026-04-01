@@ -21,18 +21,18 @@
         <div class="col-xl-7">
           <div class="hero-copy reveal-card">
             <span class="eyebrow">Maison Aure - Table Experience</span>
-            <h1 class="hero-title">Un menu cafe au design plus exclusif, pense pour commander plusieurs produits avec elegance.</h1>
+            <h1 class="hero-title">Passez jusqu'a 100 articles sur une seule table avec une interface moderne et exclusive.</h1>
             <p class="hero-text">
-              Selectionnez votre table, composez un panier raffine et envoyez la commande complete en une seule action. Une experience plus moderne, plus claire, et plus premium pour vos clients.
+              Selectionnez votre table, composez un panier raffine et envoyez la commande complete en une seule action. Le flux est pense pour les grosses tables, avec une limite claire de 100 articles maximum par table.
             </p>
             <div class="hero-metrics">
               <div class="metric-pill">
-                <strong>Multi-produits</strong>
-                <span>Une seule table, plusieurs articles</span>
+                <strong>Jusqu'a 100 articles</strong>
+                <span>Capacite elevee pour une seule table</span>
               </div>
               <div class="metric-pill">
                 <strong>Panier intelligent</strong>
-                <span>Total instantane et suppression rapide</span>
+                <span>Total instantane, compteur et suppression rapide</span>
               </div>
               <div class="metric-pill">
                 <strong>Transmission directe</strong>
@@ -50,6 +50,11 @@
                 <h2 class="panel-title mb-0">Composer la table</h2>
               </div>
               <span class="service-badge">Live</span>
+            </div>
+
+            <div class="limit-banner mt-4">
+              <span class="limit-banner-label">Capacite maximum</span>
+              <strong>100 articles par table</strong>
             </div>
 
             <form id="orderForm" class="order-form">
@@ -72,17 +77,19 @@
                 </select>
               </div>
 
-              <div class="field-shell mb-3">
+              <div class="field-shell mb-2">
                 <label for="quantity" class="form-label">Quantite</label>
                 <input
                   type="number"
                   id="quantity"
                   class="form-control luxe-control"
                   min="1"
+                  max="100"
                   value="1"
                   required
                 />
               </div>
+              <p class="quantity-hint">La somme des quantites du panier ne peut pas depasser 100 pour une meme table.</p>
 
               <div class="pricing-panel mb-3">
                 <div class="pricing-row">
@@ -114,7 +121,21 @@
                 <button type="button" id="clearCartBtn" class="btn btn-sm btn-light-clear">Vider</button>
               </div>
 
-              <div id="cartItems" class="cart-items">
+              <div class="capacity-card mt-3">
+                <div class="capacity-row">
+                  <span>Articles dans le panier</span>
+                  <strong><span id="cartCount">0</span> / 100</strong>
+                </div>
+                <div class="capacity-row muted-row">
+                  <span>Articles restants</span>
+                  <strong id="remainingCount">100</strong>
+                </div>
+                <div class="capacity-track mt-3">
+                  <div id="capacityFill" class="capacity-fill"></div>
+                </div>
+              </div>
+
+              <div id="cartItems" class="cart-items mt-3">
                 <p class="cart-empty mb-0">Aucun produit ajoute.</p>
               </div>
 
@@ -139,7 +160,7 @@
           <h2 class="section-title">Un menu plus net, plus premium, plus appetissant</h2>
         </div>
         <p class="section-copy mb-0">
-          Cliquez sur un article pour le preselectionner dans le panneau de commande, ajustez la quantite, puis ajoutez-le au panier.
+          Cliquez sur un article pour le preselectionner dans le panneau de commande, ajustez la quantite, puis ajoutez-le au panier sans jamais depasser 100 articles pour la table.
         </p>
       </div>
 

@@ -172,7 +172,8 @@ body {
 .cart-header,
 .pricing-row,
 .menu-meta,
-.menu-actions {
+.menu-actions,
+.capacity-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -194,6 +195,31 @@ body {
 
 .panel-title {
   font-size: 2.2rem;
+}
+
+.limit-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  background: rgba(243, 201, 139, 0.08);
+  border: 1px solid rgba(243, 201, 139, 0.14);
+}
+
+.limit-banner-label {
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.limit-banner strong {
+  color: var(--cream);
+  font-size: 0.98rem;
 }
 
 .field-shell .form-label {
@@ -231,18 +257,28 @@ body {
   color: #111;
 }
 
-.pricing-panel {
+.quantity-hint {
+  margin-bottom: 1rem;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.pricing-panel,
+.capacity-card {
   padding: 1rem 1.1rem;
   border-radius: 22px;
   background: rgba(255, 247, 239, 0.05);
   border: 1px solid rgba(243, 201, 139, 0.12);
 }
 
-.pricing-row {
+.pricing-row,
+.capacity-row {
   color: var(--muted);
 }
 
-.pricing-row strong {
+.pricing-row strong,
+.capacity-row strong {
   color: var(--text);
   font-size: 1.05rem;
 }
@@ -251,6 +287,26 @@ body {
   margin-top: 0.8rem;
   padding-top: 0.8rem;
   border-top: 1px solid rgba(243, 201, 139, 0.12);
+}
+
+.muted-row {
+  margin-top: 0.35rem;
+}
+
+.capacity-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.capacity-fill {
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--gold), #c98b52 55%, #a76737 100%);
+  transition: width 180ms ease;
 }
 
 .total-row span,
